@@ -2,7 +2,11 @@
 <p><img src="<%= @product.image %>"></p>
 <p> <%= @product.description %> </p>
 <p> $<%= @product.price %> </p>
-<%= link_to "All Products", root_path %>
+<%= link_to "All Products", root_path %> <br>
 
-<%= link_to "Sign Up", new_customer_registration_path %>
-<%= link_to "Log In", new_customer_session_path %>
+<% if customer_signed_in? %>
+  <%= link_to "Log Out", destroy_customer_session_path, method: :delete %>
+<%else%>
+  <%= link_to "Sign Up", new_customer_registration_path %>
+  <%= link_to "Log In", new_customer_session_path %>
+<%end%>
