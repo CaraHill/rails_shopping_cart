@@ -6,4 +6,9 @@ class Customer < ActiveRecord::Base
 
   has_many :orders
   has_many :products, through: :orders
+
+  def find_products
+    orders.unpurchased.map { |order| order.product  }
+  end
+
 end

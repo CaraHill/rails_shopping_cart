@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get '/products/cart' => 'orders#cart'
+
+  post '/add_to_cart' => 'orders#cart'
+
   devise_for :customers, controllers: { sessions: "customers/sessions"}
   root 'products#index'
   resources :products

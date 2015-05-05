@@ -1,0 +1,7 @@
+<h1>Shopping Cart:</h1>
+<% if @cart_items %>
+  <ul><% @cart_items.each do |item| %>
+    <li><%= link_to item.name, product_path(product.id)%>, <%item.price%></li>
+    <%end%>
+  </ul>
+<%end%>
