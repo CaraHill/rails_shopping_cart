@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
 
+
   # before do
   #   @current_product = Product.find_by_id(params[:id])
   # end
@@ -13,14 +14,15 @@ class OrdersController < ApplicationController
   end
 
   def add_to_cart
-    @current_product = Product.find_by_id(params[:id])
-    order = Order.new(customer_id: current_customer, product_id: @current_product, purchased: false)
-
+    current_product = Product.find_by_id(params[:id])
+    order = Order.new(customer_id: current_customer, product_id: current_product, purchased: false)
+    p order
+    p "order above"
     if order.save
-      products_cart_path
+      redirect_to products_cart_path
     else
       session[:error] = "This item has not been saved to the cart."
-      redirect back
+      redirect_to back
     end
   end
 

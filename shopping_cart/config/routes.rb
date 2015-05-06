@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get '/products/cart' => 'orders#cart'
 
-  post '/add_to_cart' => 'orders#cart'
+  post '/add_to_cart/:id' => 'orders#add_to_cart', as: 'add_to_cart'
 
   devise_for :customers, controllers: { sessions: "customers/sessions"}
   root 'products#index'
