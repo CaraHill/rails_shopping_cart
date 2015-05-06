@@ -2,11 +2,7 @@ class OrdersController < ApplicationController
   before_action :require_login
 
   def cart
-    if current_customer
-      @cart_items = current_customer.find_products
-    else
-      root_path
-    end
+    @cart_items = current_customer.find_products
   end
 
   def add_to_cart
@@ -21,8 +17,7 @@ class OrdersController < ApplicationController
   end
 
   def buy_now
-    current_order = Order.where(customer_id: current_customer.id)
-    current_order.destroy_all
+    Order.where(customer_id: current_customer.id).destroy_all
     flash[:notice] = "You have purchased all items in your cart. Thank you for shopping with us."
     @cart_items = []
     redirect_to products_cart_path
@@ -37,7 +32,7 @@ class OrdersController < ApplicationController
   private
   def require_login
     unless current_customer
-      flash[:alert] = "You must be logged in to access this section"
+      flash[:alert] = "You must be logged in to access this section."
       redirect_to new_customer_session_url
     end
   end
