@@ -8,5 +8,6 @@
 <br>
 <p id="cart-total"> Total: $<%= @cart_items.reduce(0) { |sum, obj| sum + obj.price } %></p>
 <br>
+<%= link_to "Buy Now", buy_now_path(current_customer.id), method: :post %> <br>
 
 <%= link_to "Continue Shopping", root_path %> <br>
