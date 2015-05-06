@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  before_action :require_login
 
   # before do
   #   @current_product = Product.find_by_id(params[:id])
@@ -21,9 +21,16 @@ class OrdersController < ApplicationController
     if order.save
       redirect_to products_cart_path
     else
-      session[:error] = "This item has not been saved to the cart."
+      flash[:error] = "This item has not been saved to the cart."
       redirect_to back
     end
   end
 
+  private
+  def require_login
+    unless current_customer
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to new_customer_session_url
+    end
+  end
 end

@@ -4,6 +4,9 @@
     <li><%= link_to item.name, product_path(item.id)%>, $<%=item.price%></li>
     <%end%>
   </ul>
-<%end%><br>
+<%end%>
+<br>
+<p id="cart-total"> Total: $<%= @cart_items.reduce(0) { |sum, obj| sum + obj.price } %></p>
+<br>
 
 <%= link_to "Continue Shopping", root_path %> <br>
