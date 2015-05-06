@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
   def add_to_cart
     current_product = Product.find_by_id(params[:id])
-    order = Order.new(customer_id: current_customer, product_id: current_product, purchased: false)
+    order = Order.new(customer_id: current_customer.id, product_id: current_product.id, purchased: false)
     p order
     p "order above"
     if order.save
