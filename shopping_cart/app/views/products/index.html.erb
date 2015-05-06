@@ -1,0 +1,13 @@
+<h1>Products:</h1>
+<ul>
+  <% @products.each do |product| %>
+  <li> <%= link_to product.name, product_path(product.id) %>, $<%= product.price %></li>
+  <%end%>
+</ul>
+<% if customer_signed_in? %>
+  <%= link_to "Log Out", destroy_customer_session_path, method: :delete %>
+<%else%>
+  <%= link_to "Sign Up", new_customer_registration_path %>
+  <%= link_to "Log In", new_customer_session_path %>
+<%end%>
+<%= link_to "Shopping Cart", products_cart_path %>
