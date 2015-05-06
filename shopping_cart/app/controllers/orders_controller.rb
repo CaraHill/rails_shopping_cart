@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :require_login
+  # before_action :require_login
+  before_action :authenticate_customer!
 
   def cart
     @cart_items = current_customer.find_products
@@ -29,11 +30,11 @@ class OrdersController < ApplicationController
     redirect_to products_cart_path
   end
 
-  private
-  def require_login
-    unless current_customer
-      flash[:alert] = "You must be logged in to access this section."
-      redirect_to new_customer_session_url
-    end
-  end
+  # private
+  # def require_login
+  #   unless current_customer
+  #     flash[:alert] = "You must be logged in to access this section."
+  #     redirect_to new_customer_session_url
+  #   end
+  # end
 end
