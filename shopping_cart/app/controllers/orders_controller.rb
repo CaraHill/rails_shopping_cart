@@ -1,10 +1,6 @@
 class OrdersController < ApplicationController
   before_action :require_login
 
-  # before do
-  #   @current_product = Product.find_by_id(params[:id])
-  # end
-
   def cart
     if current_customer
       @cart_items = current_customer.find_products
@@ -29,6 +25,12 @@ class OrdersController < ApplicationController
     current_order.destroy_all
     flash[:notice] = "You have purchased all items in your cart. Thank you for shopping with us."
     @cart_items = []
+    redirect_to products_cart_path
+  end
+
+  def remove_from_cart
+    current_product = Product.find_by_id(params[:id])
+    Order.where(product_id: current_product.id).destroy_all
     redirect_to products_cart_path
   end
 
