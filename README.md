@@ -1,1 +1,3 @@
-# I created a shopping cart as a way to learn to use Rails.
+# Rails Shopping Cart
+
+#Created as way to begin to learn using Rails.
