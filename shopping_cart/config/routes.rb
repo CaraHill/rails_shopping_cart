@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   post '/remove_from_cart/:id' => 'orders#remove_from_cart', as: 'remove_from_cart'
 
-  devise_for :customers, controllers: { sessions: "customers/sessions"}
+  devise_for :customers, controllers: { sessions: "customers/sessions", registrations: "customers/registrations"}
   root 'products#index'
   resources :products
 
